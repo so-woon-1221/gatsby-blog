@@ -4,8 +4,8 @@ import { AiOutlineUser } from 'react-icons/ai';
 import { BiMoon, BiSun } from 'react-icons/bi';
 import { useLocalStorage, useWindowScroll } from '@mantine/hooks';
 import { useCallback, useEffect, useState } from 'react';
-// import { useRecoilValue } from 'recoil';
-// import { uiStateAtom } from '../../atom/uiState';
+import { useRecoilValue } from 'recoil';
+import { uiStateAtom } from '../../../atom/uiState';
 import * as React from 'react';
 import { Link } from 'gatsby';
 
@@ -19,7 +19,7 @@ const Header = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   }, [setTheme, theme]);
 
-  // const uiState = useRecoilValue(uiStateAtom);
+  const uiState = useRecoilValue(uiStateAtom);
 
   const [scroll, _] = useWindowScroll();
   const [showShadow, setShowShadow] = useState(false);
@@ -46,19 +46,19 @@ const Header = () => {
             <Link to={'/'}>
               <Text
                 variant="gradient"
-                // gradient={
-                //   uiState.theme == 'light'
-                //     ? {
-                //         from: colors.teal[600],
-                //         to: colors.violet[600],
-                //         deg: 100,
-                //       }
-                //     : {
-                //         from: colors.teal[400],
-                //         to: colors.fuchsia[400],
-                //         deg: 100,
-                //       }
-                // }
+                gradient={
+                  uiState.theme == 'light'
+                    ? {
+                        from: colors.teal[600],
+                        to: colors.violet[600],
+                        deg: 100,
+                      }
+                    : {
+                        from: colors.teal[400],
+                        to: colors.fuchsia[400],
+                        deg: 100,
+                      }
+                }
                 sx={{
                   fontSize: '2rem',
                   width: 'fit-content',

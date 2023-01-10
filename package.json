@@ -20,6 +20,7 @@
     "@emotion/server": "^11.10.0",
     "@mantine/core": "^5.10.0",
     "@mantine/hooks": "^5.10.0",
+    "@tailwindcss/typography": "^0.5.8",
     "add": "^2.0.6",
     "gatsby": "^5.3.3",
     "gatsby-plugin-image": "^3.3.2",

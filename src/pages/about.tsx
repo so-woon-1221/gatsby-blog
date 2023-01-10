@@ -11,18 +11,19 @@ const AboutPage: ComponentType<PageProps> = () => {
     <Layout>
       <div className={'flex w-full flex-col gap-y-8'}>
         <div className={'flex w-full flex-col gap-x-4 md:flex-row'}>
-          <StaticImage
+          {/* <StaticImage
             src={`../images/profile.JPG`}
             alt={'프로필 이미지'}
             width={300}
             height={300}
-            style={{ objectFit: 'cover', objectPosition: 'center 10%' }}
+            style={{ objectFit: 'cover', objectPosition: '10% 10%' }}
             className={'hidden rounded-full shadow-lg md:block'}
-          />
+          /> */}
           <div
-            className={
-              'flex flex-1 flex-col gap-y-4 md:items-end md:justify-end'
-            }
+            // className={
+            // 'flex flex-1 flex-col gap-y-4 md:items-end md:justify-end'
+            // }
+            className="flex flex-col flex-1 pb-8 border-b gap-y-4"
           >
             <div>
               <h1 className={'text-3xl font-bold'}>전지훈</h1>
@@ -39,7 +40,7 @@ const AboutPage: ComponentType<PageProps> = () => {
           </div>
         </div>
 
-        <div className={'flex flex-col gap-y-4'}>
+        <div className={'flex flex-col gap-y-4 border-b pb-8'}>
           <h2 className={'text-lg'}>편하고 쉬운것을 추구하는 개발자입니다.</h2>
           <a
             href="https://pitch-age-142.notion.site/Sowoon-216c8d29765d416683ce11b354f1edc7"
@@ -52,7 +53,7 @@ const AboutPage: ComponentType<PageProps> = () => {
           </a>
         </div>
 
-        <div className={'flex flex-col gap-y-4'}>
+        <div className={'flex flex-col gap-y-4 border-b pb-8'}>
           <span className={'font-extrabold'}>Now</span>
           <span>제로투원파트너스 Developer</span>
         </div>
