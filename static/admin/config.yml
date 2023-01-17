@@ -1,5 +1,7 @@
 backend:
-  name: sowoon-blog
+  name: github
+  repo: so-woon-1221/gatsby-blog
+  branch: main
 
 media_folder: static/assets
 public_folder: /assets
