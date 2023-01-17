@@ -47,6 +47,7 @@ const config: GatsbyConfig = {
     'gatsby-plugin-postcss',
     'gatsby-plugin-mantine',
     'gatsby-transformer-remark',
+    'gatsby-plugin-netlify-cms',
   ],
 };
 
