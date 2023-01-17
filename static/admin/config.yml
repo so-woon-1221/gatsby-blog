@@ -7,12 +7,13 @@ media_folder: static/assets
 public_folder: /assets
 
 collections:
-  - name: blog
-    label: blog
-    folder: blog
+  - name: "블로그 포스트"
+    label: "블로그 포스트"
+    folder: "src/posts"
     create: true
     fields:
-      - {name: path, label: Path}
+      - {name: slug, label: slug}
       - {name: date, label: Date, widge: datetime}
       - {name: title, label: Title}
+      - {name: cateogry, label: 카테고리}
       - {name: body, label: Body, widget: markdown}
