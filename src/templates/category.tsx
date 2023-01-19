@@ -5,17 +5,15 @@ import Layout from '../components/Layout';
 
 interface Props extends PageProps {
   data: {
-    allMarkdownRemark: {
+    allContentfulBlogPost: {
       edges: {
         node: {
           id: string;
-          frontmatter: {
-            title: string;
-            date: string;
-            description: string;
-            category: string[];
-            slug: string;
-          };
+          title: string;
+          date: string;
+          description: string;
+          category: string[];
+          slug: string;
         };
       }[];
     };
@@ -32,8 +30,8 @@ interface Props extends PageProps {
 
 const PostList: ComponentType<Props> = ({ data, pageContext }) => {
   const posts = useMemo(() => {
-    return data.allMarkdownRemark.edges.map((edge) => {
-      return edge.node.frontmatter;
+    return data.allContentfulBlogPost.edges.map((edge) => {
+      return edge.node;
     });
   }, []);
 
@@ -71,7 +69,7 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
                         <Link
                           to={`/category/${category}`}
                           key={`post-${index}-category-${index2}`}
-                          className="px-2 py-1 text-sm transition-all rounded bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-600 dark:hover:bg-zinc-500 active:scale-[0.95]"
+                          className="rounded bg-zinc-100 px-2 py-1 text-sm transition-all hover:bg-zinc-200 active:scale-[0.95] dark:bg-zinc-600 dark:hover:bg-zinc-500"
                           onClick={(e) => {
                             e.stopPropagation();
                           }}
@@ -97,22 +95,20 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
 
 export const pageQuery = graphql`
   query ($skip: Int!, $category: String) {
-    allMarkdownRemark(
+    allContentfulBlogPost(
       limit: 10
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: date, order: DESC }
       skip: $skip
-      filter: { frontmatter: { category: { in: [$category] } } }
+      filter: { category: { in: [$category] } }
     ) {
       edges {
         node {
           id
-          frontmatter {
-            title
-            date(formatString: "YYYY-MM-DD")
-            description
-            category
-            slug
-          }
+          title
+          date(formatString: "YYYY-MM-DD")
+          description
+          category
+          slug
         }
       }
     }
@@ -120,7 +116,7 @@ export const pageQuery = graphql`
 `;
 
 export const Head: HeadFC<Props> = ({ pageContext }: any) => {
-  return <title>Sowoon's Space | {pageContext.category}</title>;
+  return <title>{pageContext.category} | Sowoon's Space</title>;
 };
 
 export default PostList;

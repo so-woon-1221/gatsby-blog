@@ -37,17 +37,23 @@ const config: GatsbyConfig = {
       },
       __key: 'pages',
     },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'posts',
-        path: './src/posts/',
-      },
-    },
+    // {
+    //   resolve: 'gatsby-source-filesystem',
+    //   options: {
+    //     name: 'posts',
+    //     path: './src/posts/',
+    //   },
+    // },
     'gatsby-plugin-postcss',
     'gatsby-plugin-mantine',
     'gatsby-transformer-remark',
-    'gatsby-plugin-netlify-cms',
+    {
+      resolve: 'gatsby-source-contentful',
+      options: {
+        spaceId: 'lt5xz3qlcma2',
+        accessToken: '0hkIXWClqzsJqQg0sn9ftYxid8KZ4cIBIwKJg9oWqDw',
+      },
+    },
   ],
 };
 

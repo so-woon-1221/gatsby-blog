@@ -13,13 +13,11 @@ export const createPages = async ({
   const { createPage } = actions;
   const result = await graphql(`
     query {
-      allMarkdownRemark {
+      allContentfulBlogPost {
         edges {
           node {
-            id
-            frontmatter {
-              slug
-            }
+            contentful_id
+            slug
           }
         }
       }
@@ -31,7 +29,7 @@ export const createPages = async ({
     return;
   }
 
-  const posts = result.data.allMarkdownRemark.edges;
+  const posts = result.data.allContentfulBlogPost.edges;
   const blogList = path.resolve(`src/templates/post-list.tsx`);
   const postsPerPage = 10;
   const numPages = Math.ceil(posts.length / postsPerPage);
@@ -49,10 +47,20 @@ export const createPages = async ({
     });
   });
 
+  posts.forEach(({ node }: any) => {
+    createPage({
+      path: `/post/${node.slug}`,
+      component: path.resolve(`src/templates/post-page.tsx`),
+      context: {
+        id: node.contentful_id,
+      },
+    });
+  });
+
   const categoryList = await graphql(`
     query {
-      allMarkdownRemark {
-        group(field: frontmatter___category) {
+      allContentfulBlogPost {
+        group(field: { category: SELECT }) {
           fieldValue
           count: totalCount
         }
@@ -65,10 +73,10 @@ export const createPages = async ({
     return;
   }
 
-  const categories = categoryList.data.allMarkdownRemark.group;
+  const categories = categoryList.data.allContentfulBlogPost.group;
   const categoryTemplate = path.resolve(`src/templates/category.tsx`);
   const categoryPostsPerPage = 10;
-  const categoryNumPages = Math.ceil(posts.length / categoryPostsPerPage);
+  const categoryNumPages = Math.ceil(categories.length / categoryPostsPerPage);
   categories.forEach((category: any) => {
     Array.from({ length: categoryNumPages }).forEach((_, i) => {
       createPage({

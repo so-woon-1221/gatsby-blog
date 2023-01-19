@@ -1,21 +1,20 @@
 import { Badge } from '@mantine/core';
 import { graphql, Link, PageProps, HeadFC, navigate } from 'gatsby';
 import React, { ComponentType, useMemo } from 'react';
+import { useState } from 'react';
 import Layout from '../components/Layout';
 
 interface Props extends PageProps {
   data: {
-    allMarkdownRemark: {
+    allContentfulBlogPost: {
       edges: {
         node: {
           id: string;
-          frontmatter: {
-            title: string;
-            date: string;
-            description: string;
-            category: string[];
-            slug: string;
-          };
+          title: string;
+          date: string;
+          description: string;
+          category: string[];
+          slug: string;
         };
       }[];
     };
@@ -36,8 +35,8 @@ interface Props extends PageProps {
 
 const PostList: ComponentType<Props> = ({ data, pageContext }) => {
   const posts = useMemo(() => {
-    return data.allMarkdownRemark.edges.map((edge) => {
-      return edge.node.frontmatter;
+    return data.allContentfulBlogPost.edges.map((edge) => {
+      return edge.node;
     });
   }, []);
 
@@ -47,6 +46,8 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
     });
   }, []);
 
+  const [hoverPost, setHoverPost] = useState<string | undefined>(undefined);
+
   return (
     <Layout>
       <div className="flex flex-col gap-y-8">
@@ -55,7 +56,6 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
           <div className="flex flex-col">
             {posts.map((post, index) => (
               <div
-                // to={`/post/${post.slug}`}
                 key={`post-${index}`}
                 className={`flex cursor-pointer flex-col gap-y-3 rounded py-8 ${
                   index != posts.length - 1 ? 'border-b' : ''
@@ -63,12 +63,24 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
                 onClick={() => {
                   navigate(`/post/${post.slug}`);
                 }}
+                onPointerOver={() => {
+                  setHoverPost(post.slug);
+                }}
+                onPointerOut={() => {
+                  setHoverPost(undefined);
+                }}
               >
-                <span className="text-2xl font-bold transition-all">
+                <span
+                  className={`text-2xl font-bold transition-all ${
+                    post.slug == hoverPost
+                      ? 'text-teal-600 dark:text-teal-500'
+                      : ''
+                  }`}
+                >
                   {post.title}
                 </span>
 
-                {post.category.length > 0 && (
+                {post.category?.length > 0 && (
                   <div className="flex flex-col gap-y-2">
                     <div className="flex gap-x-2">
                       {post.category.map((category, index2) => {
@@ -76,7 +88,7 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
                           <Link
                             to={`/category/${category}`}
                             key={`post-${index}-category-${index2}`}
-                            className="px-2 py-1 text-sm transition-all rounded bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-600 dark:hover:bg-zinc-500 active:scale-[0.95]"
+                            className="rounded bg-zinc-100 px-2 py-1 text-sm transition-all hover:bg-zinc-200 active:scale-[0.95] dark:bg-zinc-600 dark:hover:bg-zinc-500"
                             onClick={(e) => e.stopPropagation()}
                             // onClick={() => {
                             //   navigate(`/search?category=${category}`);
@@ -98,7 +110,7 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
           </div>
 
           {categoryList.length > 0 && (
-            <div className="sticy top-[75px] hidden md:flex h-fit w-full flex-col gap-y-3 py-8">
+            <div className="sticy top-[75px] hidden h-fit w-full flex-col gap-y-3 py-8 md:flex">
               <h3 className="font-bold">태그 리스트</h3>
               <div className="flex flex-col gap-y-1">
                 {categoryList.map((category, index) => (
@@ -106,7 +118,7 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
                     to={`/category/${category.category}`}
                     key={`category-${index}`}
                   >
-                    <div className="flex justify-between text-slate-600 dark:text-slate-400">
+                    <div className="flex justify-between text-slate-600 transition-all active:scale-[0.95] dark:text-slate-400">
                       <span>{category.category}</span>
                       <Badge>{category.count}</Badge>
                     </div>
@@ -123,26 +135,24 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
 
 export const pageQuery = graphql`
   query ($skip: Int!) {
-    allMarkdownRemark(
+    allContentfulBlogPost(
       limit: 10
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: date, order: DESC }
       skip: $skip
     ) {
       edges {
         node {
           id
-          frontmatter {
-            title
-            date(formatString: "YYYY-MM-DD")
-            description
-            category
-            slug
-          }
+          title
+          date(formatString: "YYYY-MM-DD")
+          description
+          category
+          slug
         }
       }
     }
-    categories: allMarkdownRemark {
-      group(field: frontmatter___category) {
+    categories: allContentfulBlogPost {
+      group(field: category) {
         fieldValue
         totalCount
       }
