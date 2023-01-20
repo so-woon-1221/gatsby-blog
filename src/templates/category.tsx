@@ -123,7 +123,7 @@ export const Head: HeadFC<Props> = ({ pageContext }: any) => {
   return (
     <SEO
       title={`${pageContext.category} | Sowoon's Space`}
-      keywords={pageContext.category}
+      keywords={[pageContext.category]}
     />
   );
 };
