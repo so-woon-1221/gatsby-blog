@@ -90,9 +90,6 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
                             key={`post-${index}-category-${index2}`}
                             className="rounded bg-zinc-100 px-2 py-1 text-sm transition-all hover:bg-zinc-200 active:scale-[0.95] dark:bg-zinc-600 dark:hover:bg-zinc-500"
                             onClick={(e) => e.stopPropagation()}
-                            // onClick={() => {
-                            //   navigate(`/search?category=${category}`);
-                            // }}
                           >
                             # {category}
                           </Link>

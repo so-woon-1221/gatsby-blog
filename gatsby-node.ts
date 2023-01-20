@@ -35,7 +35,6 @@ export const createPages = async ({
   const numPages = Math.ceil(posts.length / postsPerPage);
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
-      // path: i === 0 ? `/` : `/=${i}`,
       path: i === 0 ? `/` : `/page/${i + 1}`,
       component: blogList,
       context: {
@@ -77,23 +76,36 @@ export const createPages = async ({
   const categoryTemplate = path.resolve(`src/templates/category.tsx`);
   const categoryPostsPerPage = 10;
   const categoryNumPages = Math.ceil(categories.length / categoryPostsPerPage);
-  categories.forEach((category: any) => {
-    Array.from({ length: categoryNumPages }).forEach((_, i) => {
-      createPage({
-        path:
-          i === 0
-            ? `/category/${category.fieldValue}`
-            : `/category/${category.fieldValue}/page/${i + 1}`,
-        component: categoryTemplate,
-        context: {
-          category: category.fieldValue,
-          limit: categoryPostsPerPage,
-          skip: i * categoryPostsPerPage,
-          numPages: categoryNumPages,
-          currentPage: i + 1,
-          count: category.count,
+  categories
+    .sort(
+      (
+        a: {
+          fieldValue: string;
+          count: number;
         },
+        b: {
+          fieldValue: string;
+          count: number;
+        },
+      ) => b.count - a.count,
+    )
+    .forEach((category: any) => {
+      Array.from({ length: categoryNumPages }).forEach((_, i) => {
+        createPage({
+          path:
+            i === 0
+              ? `/category/${category.fieldValue}`
+              : `/category/${category.fieldValue}/page/${i + 1}`,
+          component: categoryTemplate,
+          context: {
+            category: category.fieldValue,
+            limit: categoryPostsPerPage,
+            skip: i * categoryPostsPerPage,
+            numPages: categoryNumPages,
+            currentPage: i + 1,
+            count: category.count,
+          },
+        });
       });
     });
-  });
 };
