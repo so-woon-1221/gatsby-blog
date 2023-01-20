@@ -1,3 +1,4 @@
+import { SEO } from '../components/seo';
 import { Badge } from '@mantine/core';
 import { graphql, Link, PageProps, HeadFC, navigate } from 'gatsby';
 import React, { ComponentType, useMemo } from 'react';
@@ -48,7 +49,6 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
         <div className="flex flex-col">
           {posts.map((post, index) => (
             <div
-              //   to={`/post/${post.slug}`}
               key={`post-${index}`}
               className={`flex cursor-pointer flex-col gap-y-3 rounded py-8 ${
                 index != posts.length - 1 ? 'border-b' : ''
@@ -59,6 +59,10 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
             >
               <span className="text-2xl font-bold transition-all">
                 {post.title}
+              </span>
+
+              <span className="w-full overflow-hidden text-sm text-slate-600 dark:text-slate-400 text-ellipsis whitespace-nowrap">
+                {post.description}
               </span>
 
               {post.category.length > 0 && (
@@ -116,7 +120,12 @@ export const pageQuery = graphql`
 `;
 
 export const Head: HeadFC<Props> = ({ pageContext }: any) => {
-  return <title>{pageContext.category} | Sowoon's Space</title>;
+  return (
+    <SEO
+      title={`${pageContext.category} | Sowoon's Space`}
+      keywords={pageContext.category}
+    />
+  );
 };
 
 export default PostList;

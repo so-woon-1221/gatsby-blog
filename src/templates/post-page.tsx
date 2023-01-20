@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { graphql, HeadFC, Link, PageProps } from 'gatsby';
 import Layout from '../components/Layout';
+import { SEO } from '../components/seo';
 
 interface Props extends PageProps {
   data: {
@@ -32,6 +33,11 @@ const PostPage: React.ComponentType<Props> = ({ data }) => {
       <article className="flex flex-col gap-y-12">
         <div className="flex flex-col gap-y-3">
           <h1 className="text-4xl font-bold md:text-5xl">{title}</h1>
+
+          <span className="w-full overflow-hidden text-sm text-slate-600 dark:text-slate-400 text-ellipsis whitespace-nowrap">
+            {description}
+          </span>
+
           <div className="flex gap-x-2">
             {category.map((category, index) => (
               <Link
@@ -62,7 +68,13 @@ const PostPage: React.ComponentType<Props> = ({ data }) => {
 };
 
 export const Head: HeadFC<Props> = ({ data }: { data: any }) => {
-  return <title>{data.contentfulBlogPost.title} | Sowoon's Space</title>;
+  return (
+    <SEO
+      title={`${data.contentfulBlogPost.title} | Sowoon's Space`}
+      keywords={data.contentfulBlogPost.category}
+      description={data.contentfulBlogPost.description}
+    />
+  );
 };
 
 export const pageQuery = graphql`

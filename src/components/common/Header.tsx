@@ -35,7 +35,7 @@ const Header = () => {
   return (
     <header className={'sticky top-0'}>
       <div
-        className={`z-10 flex h-[75px] items-center border-b bg-white bg-opacity-50 px-2 backdrop-blur dark:bg-[#1A1B1E] dark:bg-opacity-80 dark:backdrop-blur md:p-0 ${
+        className={`z-10 flex h-[75px] items-center border-b bg-white bg-opacity-50 px-4 backdrop-blur dark:bg-[#1A1B1E] dark:bg-opacity-80 dark:backdrop-blur md:p-0 ${
           showShadow
             ? 'border-[#e5e5e5]'
             : 'border-transparent dark:border-transparent'

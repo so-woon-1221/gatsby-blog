@@ -5,6 +5,7 @@ import { MdEmail } from 'react-icons/md';
 import { AiOutlineLink, AiFillInstagram, AiFillGithub } from 'react-icons/ai';
 import { StaticImage } from 'gatsby-plugin-image';
 import Layout from '../components/Layout';
+import { SEO } from '../components/seo';
 
 const AboutPage: ComponentType<PageProps> = () => {
   return (
@@ -84,4 +85,10 @@ const AboutPage: ComponentType<PageProps> = () => {
 
 export default AboutPage;
 
-export const Head: HeadFC = () => <title>About</title>;
+export const Head: HeadFC = () => (
+  <SEO
+    title="About"
+    description="About Sowoon"
+    keywords={['sowoon', 'blog', '블로그', '프론트엔드',' 개발자']}
+  />
+);
