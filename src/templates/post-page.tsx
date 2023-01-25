@@ -60,7 +60,7 @@ const PostPage: React.ComponentType<Props> = ({ data }) => {
 
         <div
           dangerouslySetInnerHTML={{ __html: html }}
-          className={`prose max-w-none prose-p:my-0.5 prose-code:rounded prose-code:p-1 prose-code:before:content-[''] prose-code:after:content-[''] dark:prose-code:bg-zinc-700 prose-code:bg-zinc-100`}
+          className={`prose max-w-none prose-p:my-0.5 prose-code:rounded prose-code:p-1 prose-code:before:content-[''] prose-code:after:content-[''] dark:prose-code:bg-zinc-700 prose-code:bg-zinc-100 prose-img:w-full`}
         />
       </article>
     </Layout>
