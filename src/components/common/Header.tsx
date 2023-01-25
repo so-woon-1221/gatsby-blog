@@ -33,9 +33,9 @@ const Header = () => {
   }, [scroll]);
 
   return (
-    <header className={'sticky top-0'}>
+    <header className={'sticky top-0 z-50'}>
       <div
-        className={`z-10 flex h-[75px] items-center border-b bg-white bg-opacity-50 px-4 backdrop-blur dark:bg-[#1A1B1E] dark:bg-opacity-80 dark:backdrop-blur md:p-0 ${
+        className={`flex h-[75px] items-center border-b bg-white bg-opacity-50 px-4 backdrop-blur dark:bg-[#1A1B1E] dark:bg-opacity-80 dark:backdrop-blur md:p-0 ${
           showShadow
             ? 'border-[#e5e5e5]'
             : 'border-transparent dark:border-transparent'
