@@ -1494,6 +1494,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@deckdeckgo/highlight-code@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "@deckdeckgo/highlight-code@npm:4.4.0"
+  dependencies:
+    "@deckdeckgo/utils": ^5.1.0
+    prismjs: ^1.27.0
+  checksum: ba1ae5fdc77bb057c0ce80589f8ad4fc3583648d9af5635255f93989f4cfe6158329924bf8ab4e51120ea675002983f1e005e4bc5e1606ae99710233ae76c40e
+  languageName: node
+  linkType: hard
+
+"@deckdeckgo/utils@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "@deckdeckgo/utils@npm:5.1.0"
+  checksum: 8240e6a330c47168e788fd24c78511ea5327b3c4fec492d24c60171336fbfdc5d0070ed6087355d4fbd2543aa922ccfede662b75d64ef5b02cb8d0b26802dee6
+  languageName: node
+  linkType: hard
+
 "@emotion/babel-plugin@npm:^11.10.5":
   version: 11.10.5
   resolution: "@emotion/babel-plugin@npm:11.10.5"
@@ -7667,6 +7684,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "gastby-blog@workspace:."
   dependencies:
+    "@deckdeckgo/highlight-code": ^4.4.0
     "@emotion/cache": ^11.10.5
     "@emotion/react": ^11.10.5
     "@emotion/serialize": ^1.1.1
@@ -7688,6 +7706,7 @@ __metadata:
     gatsby-plugin-postcss: ^6.3.0
     gatsby-plugin-sharp: ^5.3.2
     gatsby-plugin-sitemap: ^6.3.1
+    gatsby-remark-highlight-code: ^3.3.0
     gatsby-source-contentful: ^8.4.1
     gatsby-source-filesystem: ^5.3.1
     gatsby-transformer-remark: ^6.3.2
@@ -7807,6 +7826,18 @@ __metadata:
     react: ^18.0.0 || ^0.0.0
     react-dom: ^18.0.0 || ^0.0.0
   checksum: 251ad35e58e0c4b67718a562e035e33425404475dfd72ff7e1279db321f2ab09b50726373f5805d3e598a6f07b5a77d13dbcab79ab0b6c1c3a156d77e754be2e
+  languageName: node
+  linkType: hard
+
+"gatsby-node-helpers@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "gatsby-node-helpers@npm:1.2.1"
+  dependencies:
+    camel-case: ^4.1.2
+    pascal-case: ^3.1.2
+  peerDependencies:
+    gatsby: ">=2.29"
+  checksum: 13644f231c925d9b73f01901f371ce0ee69168538067e9fe697cbb9416a5ca5824ae8a87cbe8e6b3380e7afb7ed6a4ab0de759f3ecdd1e8a1ce774d741198954
   languageName: node
   linkType: hard
 
@@ -8055,6 +8086,21 @@ __metadata:
     react: ^18.0.0 || ^0.0.0
     react-dom: ^18.0.0 || ^0.0.0
   checksum: 8ce2a8b12c7f7d8009cecc651819d02ce5a337eedc203b0cf9df18556d669585a90efc63e6ae359f04b7760e2e55da104955e26fd8917eeeff8f9d4d243f86a4
+  languageName: node
+  linkType: hard
+
+"gatsby-remark-highlight-code@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "gatsby-remark-highlight-code@npm:3.3.0"
+  dependencies:
+    gatsby-node-helpers: ^1.2.1
+    lodash: ^4.17.21
+    mdast-util-to-string: ^1.1.0
+    unist-util-visit: ^2.0.2
+  peerDependencies:
+    "@deckdeckgo/highlight-code": ^3.6.0
+    gatsby: ^3.0.0 || ^4.0.0 || ^5.0.0
+  checksum: 2f67436f4f3e7f14353c1a9152e615f74f3f8b9c794d671dfc03076ead86c0ed1e76aa9980718ac304ae2c503ce56099158abc68fc95ec9d99f9f54c927a8ef5
   languageName: node
   linkType: hard
 
@@ -10771,6 +10817,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mdast-util-to-string@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "mdast-util-to-string@npm:1.1.0"
+  checksum: eec1eb283f3341376c8398b67ce512a11ab3e3191e3dbd5644d32a26784eac8d5f6d0b0fb81193af00d75a2c545cde765c8b03e966bd890076efb5d357fb4fe2
+  languageName: node
+  linkType: hard
+
 "mdast-util-to-string@npm:^2.0.0":
   version: 2.0.0
   resolution: "mdast-util-to-string@npm:2.0.0"
@@ -12839,6 +12892,13 @@ __metadata:
     lodash: ^4.17.20
     renderkid: ^3.0.0
   checksum: a5b9137365690104ded6947dca2e33360bf55e62a4acd91b1b0d7baa3970e43754c628cc9e16eafbdd4e8f8bcb260a5865475d4fc17c3106ff2d61db4e72cdf3
+  languageName: node
+  linkType: hard
+
+"prismjs@npm:^1.27.0":
+  version: 1.29.0
+  resolution: "prismjs@npm:1.29.0"
+  checksum: 007a8869d4456ff8049dc59404e32d5666a07d99c3b0e30a18bd3b7676dfa07d1daae9d0f407f20983865fd8da56de91d09cb08e6aa61f5bc420a27c0beeaf93
   languageName: node
   linkType: hard
 
@@ -15360,7 +15420,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unist-util-visit@npm:^2.0.0, unist-util-visit@npm:^2.0.3":
+"unist-util-visit@npm:^2.0.0, unist-util-visit@npm:^2.0.2, unist-util-visit@npm:^2.0.3":
   version: 2.0.3
   resolution: "unist-util-visit@npm:2.0.3"
   dependencies:

@@ -49,7 +49,16 @@ const config: GatsbyConfig = {
     // },
     'gatsby-plugin-postcss',
     'gatsby-plugin-mantine',
-    'gatsby-transformer-remark',
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-highlight-code`,
+          },
+        ],
+      },
+    },
     {
       resolve: 'gatsby-source-contentful',
       options: {

@@ -1,6 +1,8 @@
 import React, { ComponentType } from 'react';
 import Footer from './common/Footer';
 import Header from './common/Header';
+import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader';
+deckDeckGoHighlightElement();
 
 interface Props {
   children: React.ReactNode;
