@@ -3,7 +3,7 @@ import type { GatsbyConfig } from 'gatsby';
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Sowoon's Space`,
-    siteUrl: `https://sowoon.xyz`,
+    siteUrl: `https://sowoon.xyz/`,
     description: `Sowoon's Space | Sowoon's Blog
     제가 경험을 기록하는 공간입니다. 가볍게 봐주세요.`,
     author: `Sowoon`,
@@ -14,7 +14,15 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     'gatsby-plugin-image',
-    'gatsby-plugin-sitemap',
+    'gatsby-plugin-advanced-sitemap',
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://sowoon.xyz/',
+        sitemap: 'https://sowoon.xyz/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
