@@ -1,5 +1,9 @@
 import type { GatsbyConfig } from 'gatsby';
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Sowoon's Space`,
@@ -8,9 +12,6 @@ const config: GatsbyConfig = {
     제가 경험을 기록하는 공간입니다. 가볍게 봐주세요.`,
     author: `Sowoon`,
   },
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
     'gatsby-plugin-image',
@@ -48,13 +49,6 @@ const config: GatsbyConfig = {
       },
       __key: 'pages',
     },
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     name: 'posts',
-    //     path: './src/posts/',
-    //   },
-    // },
     'gatsby-plugin-postcss',
     'gatsby-plugin-mantine',
     {
@@ -70,8 +64,8 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-source-contentful',
       options: {
-        spaceId: 'lt5xz3qlcma2',
-        accessToken: '0hkIXWClqzsJqQg0sn9ftYxid8KZ4cIBIwKJg9oWqDw',
+        spaceId: process.env.CONTENTFUL_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
   ],

@@ -40,10 +40,7 @@ const PostPage: React.ComponentType<Props> = ({ data }) => {
 
           <div className="flex gap-x-2">
             {category.map((category, index) => (
-              <Link
-                to={`/search?category=${category}`}
-                key={`category-${index}`}
-              >
+              <Link to={`/category/${category}`} key={`category-${index}`}>
                 <span
                   key={category}
                   className={
