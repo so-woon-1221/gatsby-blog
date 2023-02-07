@@ -21,9 +21,6 @@ const AboutPage: ComponentType<PageProps> = () => {
             className={'hidden rounded-full shadow-lg md:block'}
           /> */}
           <div
-            // className={
-            // 'flex flex-1 flex-col gap-y-4 md:items-end md:justify-end'
-            // }
             className="flex flex-col flex-1 pb-8 border-b gap-y-4"
           >
             <div>
@@ -37,7 +34,7 @@ const AboutPage: ComponentType<PageProps> = () => {
               </h1>
             </div>
             <h1 className={'text-xl font-bold'}>Frontend Developer</h1>
-            <h1 className={'text-xl font-bold'}>편하고 쉽게</h1>
+            <h1 className={'text-xl font-bold'}>Simple is Best</h1>
           </div>
         </div>
 
