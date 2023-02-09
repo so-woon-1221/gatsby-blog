@@ -34,6 +34,10 @@ export const SEO = ({
       <meta name="author" content={seo.author} />
       <meta name="keywords" content={seo.keywords} />
       <meta lang="ko" />
+      <meta
+        name="naver-site-verification"
+        content="b615183cd9e9232769967f877f7f27d35d8041ac"
+      />
     </>
   );
 };
