@@ -20,7 +20,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: 'https://sowoon.xyz/',
-        sitemap: 'https://sowoon.xyz/sitemap.xml',
+        sitemap: 'https://sowoon.xyz/sitemap-pages.xml',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
