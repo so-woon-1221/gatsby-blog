@@ -5,12 +5,10 @@ export const SEO = ({
   title,
   description,
   keywords,
-  children,
 }: {
   title?: string;
   description?: string;
   keywords: string[];
-  children?: React.ReactNode;
 }) => {
   const {
     title: defalutTitle,

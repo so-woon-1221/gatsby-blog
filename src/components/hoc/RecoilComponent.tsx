@@ -9,7 +9,7 @@ interface Props {
 
 const RecoilComponent: ComponentType<Props> = ({ children }) => {
   const [uiState, setUiState] = useRecoilState(uiStateAtom);
-  const [theme, setTheme] = useLocalStorage<'dark' | 'light'>({ key: 'theme' });
+  const [theme, _] = useLocalStorage<'dark' | 'light'>({ key: 'theme' });
 
   useEffect(() => {
     setUiState((prev) => {

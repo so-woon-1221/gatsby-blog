@@ -57,6 +57,10 @@ const config: GatsbyConfig = {
         plugins: [
           {
             resolve: `gatsby-remark-highlight-code`,
+            options: {
+              terminal: 'carbon',
+              theme: 'one-dark',
+            },
           },
         ],
       },

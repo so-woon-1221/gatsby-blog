@@ -21,11 +21,12 @@ interface Props extends PageProps {
     };
     categories: {
       group: {
-        fieldValue: string;
-        totalCount: number;
+        category: string;
+        count: number;
       }[];
     };
   };
+  // gatsby-node.ts에서 받은 값
   pageContext: {
     skip: number;
     limit: number;
@@ -34,7 +35,7 @@ interface Props extends PageProps {
   };
 }
 
-const PostList: ComponentType<Props> = ({ data, pageContext }) => {
+const PostList: ComponentType<Props> = ({ data }) => {
   const posts = useMemo(() => {
     return data.allContentfulBlogPost.edges.map((edge) => {
       return edge.node;
@@ -42,9 +43,7 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
   }, []);
 
   const categoryList = useMemo(() => {
-    return data.categories.group.map((d) => {
-      return { category: d.fieldValue, count: d.totalCount };
-    });
+    return data.categories.group.sort((a, b) => b.count - a.count);
   }, []);
 
   const [hoverPost, setHoverPost] = useState<string | undefined>(undefined);
@@ -136,9 +135,9 @@ const PostList: ComponentType<Props> = ({ data, pageContext }) => {
 };
 
 export const pageQuery = graphql`
-  query ($skip: Int!) {
+  query ($skip: Int!, $limit: Int!) {
     allContentfulBlogPost(
-      limit: 10
+      limit: $limit
       sort: { fields: date, order: DESC }
       skip: $skip
     ) {
@@ -155,8 +154,8 @@ export const pageQuery = graphql`
     }
     categories: allContentfulBlogPost {
       group(field: category) {
-        fieldValue
-        totalCount
+        category: fieldValue
+        count: totalCount
       }
     }
   }
