@@ -20,9 +20,7 @@ const AboutPage: ComponentType<PageProps> = () => {
             style={{ objectFit: 'cover', objectPosition: '10% 10%' }}
             className={'hidden rounded-full shadow-lg md:block'}
           /> */}
-          <div
-            className="flex flex-col flex-1 pb-8 border-b gap-y-4"
-          >
+          <div className="flex flex-col flex-1 pb-8 border-b gap-y-4">
             <div>
               <h1 className={'text-3xl font-bold'}>전지훈</h1>
               <h1
@@ -39,7 +37,9 @@ const AboutPage: ComponentType<PageProps> = () => {
         </div>
 
         <div className={'flex flex-col gap-y-4 border-b pb-8'}>
-          <h2 className={'text-lg'}>편하고 쉬운것을 추구하는 개발자입니다.</h2>
+          <h2 className={'text-lg'}>
+            편하고 심플한 것을 추구하는 개발자입니다.
+          </h2>
           <a
             href="https://pitch-age-142.notion.site/Sowoon-216c8d29765d416683ce11b354f1edc7"
             target="_blank"
@@ -86,6 +86,6 @@ export const Head: HeadFC = () => (
   <SEO
     title="About"
     description="About Sowoon"
-    keywords={['sowoon', 'blog', '블로그', '프론트엔드',' 개발자']}
+    keywords={['sowoon', 'blog', '블로그', '프론트엔드', ' 개발자']}
   />
 );
