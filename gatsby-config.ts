@@ -62,6 +62,12 @@ const config: GatsbyConfig = {
               theme: 'one-dark',
             },
           },
+          {
+            resolve: 'gatsby-remark-images-contentful',
+            options: {
+              maxWidth: 590,
+            },
+          },
         ],
       },
     },
